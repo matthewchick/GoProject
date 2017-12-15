@@ -10,7 +10,12 @@ func main() {
 
 	cards := newDeck()
 
-	cards.print() //call print function from deck.go
+	cards.print() //call print function from deck.go,
+
+	hand, remainingCards := deal(cards, 5)
+
+	hand.print()
+	remainingCards.print()
 
 	// for _, card := range cards {
 	// 	fmt.Println(card)
