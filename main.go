@@ -8,7 +8,8 @@ import (
 
 func main() {
 	// var card string = "Ace of Spades" // static type
-	cards := []string{"Ace of Diamonds", newCard()} //initializeby by a slice of type string
+	cards := deck{"Ace of Diamonds", newCard()} //initializeby by a slice of type string
+
 	// card = "Five of Diamonds"   //reassignment
 	cards = append(cards, "Six of Spades") //not modify the slice
 
