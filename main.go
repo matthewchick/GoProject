@@ -13,9 +13,8 @@ func main() {
 	// card = "Five of Diamonds"   //reassignment
 	cards = append(cards, "Six of Spades") //not modify the slice
 
-	for i, card := range cards {
-		fmt.Println(i, card)
-	}
+	cards.print() //call print function from deck.go
+
 	for _, card := range cards {
 		fmt.Println(card)
 	}
