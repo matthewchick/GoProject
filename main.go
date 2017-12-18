@@ -16,6 +16,9 @@ func main() {
 	fmt.Println(cards.toString())
 	cards.saveToFile("my_cards")
 
+	cardsR := newDeckFromFile("my_cards")
+	cardsR.print()
+
 	// cards.print() //call print function from deck.go,
 
 	// hand, remainingCards := deal(cards, 5)
