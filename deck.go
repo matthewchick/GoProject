@@ -1,8 +1,9 @@
 package main
 
 import (
-	"strings"
 	"fmt"
+	"io/ioutil"
+	"strings"
 )
 
 // Create a new type of 'deck
@@ -38,6 +39,11 @@ func deal(d deck, handSize int) (deck, deck) {
 
 //turn string to byte -> a receiver
 func (d deck) toString() string {
-	return strings.Join([]string(d), ",")  //convert a slice string into a single string
+	return strings.Join([]string(d), ",") //convert a slice string into a single string
 
+}
+
+// a receiver
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
