@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -14,7 +15,6 @@ type deck []string
 // return deck
 func newDeck() deck {
 	cards := deck{}
-
 	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Club"}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
@@ -32,7 +32,12 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
-
+func (d deck) shuffle() {
+	for i := range d {
+		newPosition := rand.Intn(len(d) - 1)
+		d[i], d[newPosition] = d[newPosition], d[i]   //swap the position
+	}
+}
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
@@ -40,14 +45,12 @@ func deal(d deck, handSize int) (deck, deck) {
 //turn string to byte -> a receiver
 func (d deck) toString() string {
 	return strings.Join([]string(d), ",") //convert a slice string into a single string
-
 }
 
 // a receiver
 func (d deck) saveToFile(filename string) error {
 	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
-
 func newDeckFromFile(filename string) deck {
 	bs, err := ioutil.ReadFile(filename)
 	if err != nil {

@@ -2,10 +2,6 @@
 
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
 	// var card string = "Ace of Spades" // static type
 	// cards := deck{"Ace of Diamonds", newCard()} //initializeby by a slice of type string
@@ -13,11 +9,13 @@ func main() {
 	// cards = append(cards, "Six of Spades") //not modify the slice
 
 	cards := newDeck()
-	fmt.Println(cards.toString())
-	cards.saveToFile("my_cards")
+	cards.shuffle()
+	cards.print()
+	// fmt.Println(cards.toString())
+	// cards.saveToFile("my_cards")
 
-	cardsR := newDeckFromFile("my_cards")
-	cardsR.print()
+	// cardsR := newDeckFromFile("my_cards")
+	// cardsR.print()
 
 	// cards.print() //call print function from deck.go,
 
