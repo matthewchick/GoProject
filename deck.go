@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Create a new type of 'deck
@@ -15,12 +16,12 @@ type deck []string
 // return deck
 func newDeck() deck {
 	cards := deck{}
-	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Club"}
+	cardSuits := deck{"Spades", "Diamonds", "Hearts", "Club"}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
 	for _, suit := range cardSuits {
 		for _, value := range cardValues {
-			cards = append(cards, suit+" of "+value)
+			cards = append(cards, value+" of "+suit)
 		}
 	}
 	return cards
@@ -33,9 +34,12 @@ func (d deck) print() {
 	}
 }
 func (d deck) shuffle() {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
 	for i := range d {
-		newPosition := rand.Intn(len(d) - 1)
-		d[i], d[newPosition] = d[newPosition], d[i]   //swap the position
+		newPosition := r.Intn(len(d) - 1)
+		d[i], d[newPosition] = d[newPosition], d[i] //swap the position
 	}
 }
 func deal(d deck, handSize int) (deck, deck) {
